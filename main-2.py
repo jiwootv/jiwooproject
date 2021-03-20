@@ -10,5 +10,4 @@ time.sleep(1)
 print("취미는 게임과 코딩, 독서 입니다.")
 time.sleep(1)
 number2=(input('프로그램을 종료하시려면 아무 글자나 입력하세요.'))
-
-#dfdf
+#q
