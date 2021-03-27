@@ -4,12 +4,12 @@ import time
 # time 모듈과 random 모듈을 불러온다. (import random, time)
 
 score = 0  # 점수를 0으로 정한다. (Set the score to 0)
-x = random.randint(1, 64)  # x, y, z, a, b, c 이 변수들을 1 ~ 64 사이의 수로 정한다.
-y = random.randint(1, 64)  # (x, y, z, a, b, c set these variables to numbers between 1 and 64.)
-z = random.randint(1, 64)
-a = random.randint(1, 64)
-b = random.randint(1, 64)
-c = random.randint(1, 64)
+x = random.randint(1, 63)  # x, y, z, a, b, c 이 변수들을 1 ~ 64 사이의 수로 정한다.
+y = random.randint(1, 63)  # (x, y, z, a, b, c set these variables to numbers between 1 and 64.)
+z = random.randint(1, 63)
+a = random.randint(1, 63)
+b = random.randint(1, 63)
+c = random.randint(1, 63)
 
 print('1부터 63 사이의 숫자를 입력해 주세요. (Please enter a number between 1 and 63.) ')
 time.sleep(1)
@@ -51,6 +51,6 @@ if c == c_anser:
 else:
     print('아... 원래 6번째 번호는', c, '였는데...', 'Oh... the 6rd number was originally', c, ' ...')
 time.sleep(1)
-print('당신의 점수는', score, '입니다. (120점 만점)', 'Your score is', score, '. (Out of 120 points) ')
+print('당신의 점수는', score*10, '입니다. (120점 만점)', 'Your score is', score*10, '. (Out of 120 points) ')
 time.sleep(5)
 input ('이 프로젝트를 끝내시려면 아무 글자나 입력해 주세요.')
