@@ -5,7 +5,7 @@ score = 0
 q1 = ['1. 10+10은?', '2. 달은 스스로 빛을 낸다 (o 또는 x)', '3. 독일의 유명한 독재자 이름을 쓰시오.',
     '4. 일산화탄소의 분자 구조를 설명하시오.   1. 산소 2개, 탄소 1개 2. 산소 3개 탄소 2개 3. 탄소 7개 산소 5개', '5. 나치 수용소에서 한 여자아이의 경험을 쓴 일기의 이름은?'
 ]
-q2 = ['20', 'o','히틀러','1', '모네의 일기']
+q2 = ['20', 'o', '히틀러', '1', '모네의 일기']
 def quiz(quiz, answer):
     global score
     global radom_v
@@ -42,20 +42,21 @@ def im_graund():
     time.sleep(3)
     return
 def quiz_run():
-    global number
     for number in range(0, 3):
-        quiz(q1[number], q2[number])
+        quiz (q1[number], q2[number])
         number = number + 1
-def the_end():
+def the_end ():
     print('당신의 점수는', score*10, '입니다.')
-    if score*10 > 90:
+    if score*10 > 60:
         print('잘 하셨네요.')
         time.sleep(1)
         print('당신이 7살 이하라면...')
+        time.sleep(5)
     else:
         print('당신. 이 정도 쉬운 문제도 못 풀다니...')
         time.sleep(1)
-im_graund()
-quiz_run()
+        print('당신. 초등학교 과정부터 다시 하세요. ')
 
-
+        time.sleep(5)
+im_graund ()
+quiz_run ()
