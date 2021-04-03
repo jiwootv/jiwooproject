@@ -61,4 +61,5 @@ def the_end ():
         time.sleep(5)
 im_graund ()
 quiz_run ()
+#마무리를 짓는다.
 the_end()
