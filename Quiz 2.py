@@ -44,9 +44,9 @@ def im_graund():
     return
 def quiz_run():
     for number in range(0, 5):
-        quiz (q1[number], q2[number])
+        quiz(q1[number], q2[number])
         number = number + 20
-def the_end ():
+def the_end():
     print('당신의 점수는', score*10, '입니다.')
     if score*10 > 60:
         print('잘 하셨네요.')
@@ -59,6 +59,6 @@ def the_end ():
         print('당신. 초등학교 과정부터 다시 하세요. ')
 
         time.sleep(5)
-im_graund ()
-quiz_run ()
+im_graund()
+quiz_run()
 the_end()
