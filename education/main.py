@@ -17,3 +17,4 @@ print('두 숫자의 나누기는', number1/number2, '입니다.' )
 time.sleep(0.25)
 print('두 숫자의 곱은', number1*number2, '입니다.' )
 time.sleep(5)
+# ^ ^
