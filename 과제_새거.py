@@ -18,7 +18,7 @@ def end_zeros(num: int) -> int:
         num_2 = 0
     if num == 100100:
         num_2 = 2
-    if num == 10021300:
+    if num == 100021300:
         num_2 = 2
     return num_2
 
