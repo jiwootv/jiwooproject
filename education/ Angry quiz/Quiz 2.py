@@ -47,8 +47,8 @@ def quiz_run():
         quiz(q1[number], q2[number])
         number = number + 20
 def the_end():
-    print('당신의 점수는', score*10, '입니다.')
-    if score*10 > 60:
+    print('당신의 점수는', score * 10, '입니다.')
+    if score * 10 > 60:
         print('잘 하셨네요.')
         time.sleep(1)
         print('당신이 7살 이하라면...')
