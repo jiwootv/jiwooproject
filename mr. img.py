@@ -53,8 +53,7 @@ for i in range(50):
     색(색종류[number])
 
     원(a)
-for i in range(10):
-    winsound.PlaySound('omg.wav', winsound.SND_FILENAME)
+
 지우기()
 import time
 time.sleep(1)
