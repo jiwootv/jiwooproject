@@ -1,5 +1,5 @@
-y = 100
-
+y = 150
+x = 505
 import pygame, sys
 
 pygame.init()
@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((1300, 600))
 chracter_img = pygame.image.load('sans2 (1).svg')
 i_x, i_y = chracter_img.get_size()
 font = pygame.font.SysFont('malgungothic', 50)
-x = 0
+
 key = 0
 key_y = 0
 while True:
@@ -25,7 +25,7 @@ while True:
 
             if event.key == (pygame.K_d or pygame.K_LEFT):
                 key = 1
-            if event.key == (pygame.K_s or pygame.K_UP):
+            if event.key == (pygame.K_s or pygame.K_DOWN):
                 key_y = 1
             if event.key == (pygame.K_w or pygame.K_UP):
                 key_y = -1
@@ -34,10 +34,7 @@ while True:
             key = 0
             key_y = 0
         if x > 1300:
-            x = 0
-
-
-
+            x = 650
     x += key
     y += key_y
     screen.fill((255, 255, 255))
