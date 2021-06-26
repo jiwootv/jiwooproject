@@ -1,5 +1,7 @@
 import tkinter as tk
 
+
+
 root = tk.Tk()
 root.title("아2콘 연습")
 root.geometry("640x400+100+100")
