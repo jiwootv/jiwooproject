@@ -70,7 +70,7 @@ Game = Gamecode()
 
 
 def run():
-    pygame.time.wait(60)  # 멈추는 코드요. 숫자 1당 밀리초입니다.( 1당 0.1초) 저는 5초로 했어요.
+    pygame.time.wait(3000)  # 멈추는 코드요. 숫자 1당 밀리초입니다.( 1당 0.001초) 저는 3초로 했어요.
     Game.randomaisetkey()  # 코드 실행!
 
     Game.manyag()
