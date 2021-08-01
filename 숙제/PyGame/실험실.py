@@ -23,7 +23,7 @@ class Figure(pygame.sprite.Sprite):
         self.game = root
         self.image = pygame.Surface((20, 70))
         self.image.fill((255, 0, 0))
-
+        self.image_t = self.image
         self.rect = self.image.get_rect()
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
@@ -32,7 +32,7 @@ class Figure(pygame.sprite.Sprite):
         self.speed = 10
 
     def update(self):
-        pygame.transform.rotozoom(self.image, 30, 10)
+        pygame.transform.rotozoom(self.image, 30, 1)
         rotcenter(self.image, 90)
         if self.game.pressed_key[pygame.K_SPACE]:
 
