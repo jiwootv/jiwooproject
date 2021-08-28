@@ -30,10 +30,11 @@ class Figure(pygame.sprite.Sprite):
         self.pos = pygame.Vector2(random.randint(0, Screen_x), random.randint(0, Screen_y))
         self.dir = pygame.Vector2(random.random() * 2 - 1, random.random() * 2 - 1)
         self.speed = 10
+        self.gagdo = 0
 
     def update(self):
-        pygame.transform.rotozoom(self.image, 30, 1)
-        rotcenter(self.image, 90)
+        pygame.transform.rotozoom(self.image_t, self.gagdo, 1)
+        self.gagdo =+ 30
         if self.game.pressed_key[pygame.K_SPACE]:
 
             self.dir.y += GRAVITY

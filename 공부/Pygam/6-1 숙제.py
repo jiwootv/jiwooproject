@@ -61,6 +61,9 @@ class Figure(pygame.sprite.Sprite):
             self.pos += self.dir * self.speed
             self.rect.center = self.pos
 
+        def col(self):
+            self.dir = pygame.Vector2(random.random() * 2 - 1, random.random() * 2 - 1)
+
         if self.col_lim > 3:
             self.kill()
             del self
@@ -73,17 +76,20 @@ class Figure(pygame.sprite.Sprite):
         self.dir = pygame.Vector2(random.random() * 2 - 1, random.random() * 2 - 1)
 
 
+avata = Figure
+
+
 class Game:
-    def __init__(self):
+    def __init__(self, avata):
         pygame.init()
         pygame.display.set_caption('사각형 게임 ')
         self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y))  # 화면 세팅
         self.clock = pygame.time.Clock()  # 시계 지정
         self.playing = True
         self.all_sprites = pygame.sprite.Group()
-        self.bomb = pygame.mixer.Sound('숙제/PyGame/18.wav')
+        self.bomb = pygame.mixer.Sound('18.wav')
         self.bomb.set_volume(0.1)
-        self.back = pygame.image.load('images/starfalling.jpg')
+        self.back = pygame.image.load('back.png')
         self.back = pygame.transform.scale(self.back, (SCREEN_X, SCREEN_Y))
 
     def run(self):
@@ -100,15 +106,15 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
-            if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
-                for a in self.all_sprites:
-                    a.reset()
+            # if event.type == pygame.KEYUP and event.key == pygame.K_SPACE:
+            #     for a in self.all_sprites:
+            #         a.reset()
         for figure in self.all_sprites:
             re = pygame.sprite.spritecollide(figure, self.all_sprites, False)
             for a in re:
                 if not figure == a:
                     pygame.mixer.Sound.play(self.bomb)
-                    figure.col()
+                    pygame.mixer.Sound.play(self.bomb)
 
     def update(self):
         if len(self.all_sprites) < 20:
@@ -121,6 +127,6 @@ class Game:
         self.all_sprites.draw(self.screen)
 
 
-game = Game()
+game = Game(avata)
 game.run()
 pygame.quit()
