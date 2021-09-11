@@ -1,6 +1,6 @@
 # 파이게임 기본(클래스)
 
-import pygame, random
+import pygame, random, os
 
 # 전역상수
 SCREEN_X = 640  # 화면 넓이
@@ -8,6 +8,15 @@ SCREEN_Y = 480  # 화면 높이
 FPS = 60
 vec = pygame.math.Vector2
 
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (320, 30)
+
+
+def draw_text(surface, text, size, color, x, y):
+    font = pygame.font.SysFont('malgungothic', size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    surface.blit(text_surface, text_rect)
 
 class Mogi(pygame.sprite.Sprite):
     def __init__(self, root):
@@ -23,7 +32,8 @@ class Mogi(pygame.sprite.Sprite):
         self.time = pygame.time.get_ticks()
         self.mask = pygame.mask.from_surface(self.image)
         self.v_bool = True
-        self.mogi_kiil_sound = pygame.mixer.Sound('따귀+세게.wav')
+        self.mogi_kiil_sound = pygame.mixer.Sound('공부_Pygam_따귀+세게_t.wav')
+        self.sec = 100
 
     def update(self):
         self.dir = vec(random.random() * random.randint(-20, 20), random.random() * random.randint(-20, 20))
@@ -42,7 +52,8 @@ class Mogi(pygame.sprite.Sprite):
             print(f'잡음{random.randint(1, 100)}')
             self.game.mogi_kill += 1
             pygame.mixer.init()
-
+            self.mogi_kiil_sound.play()
+            self.mogi_kiil_sound.set_volume(0.6)
 
 
             self.kill()
@@ -54,7 +65,11 @@ class Mogi(pygame.sprite.Sprite):
 
         else:
             self.v_bool = True
-            self.mogi_kiil_sound.play()
+    def timer(self):
+        self.sec = 100
+        # self.
+
+
 
 
 class Mogistick(pygame.sprite.Sprite):
@@ -92,14 +107,20 @@ class Game:
         self.mogi_num = 100
         self.mogi_kill = 0
         self.stop = True
+        self.fullscreen = False
+        self.stage = 1
+        pygame.mixer.music.load('용구탄생의 비밀.wav')
 
     def run(self):
         self.opning()
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(1.0)
         while self.playing:
             self.clock.tick(FPS)
             self.event()
             self.update()
             self.draw()
+
             pygame.display.update()
 
     def event(self):
@@ -107,6 +128,19 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_F11 and self.fullscreen:
+                    self.fullscreen = False
+                    pygame.display.toggle_fullscreen()
+                    self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y), 0, 0)
+
+                    break
+                if event.key == pygame.K_F11 and not self.fullscreen:
+                    self.fullscreen = True
+                    self.screen = pygame.display.set_mode((SCREEN_X, SCREEN_Y), pygame.FULLSCREEN)
+
+
 
     def update(self):
         self.all_sprite.update()
@@ -118,19 +152,14 @@ class Game:
     def draw(self):
         self.screen.fill(pygame.Color('White'))
         self.all_sprite.draw(self.screen)
-        self.draw_text(f'모기 잡은 수: {self.mogi_kill}', 30, pygame.Color('Blue'), 10, 10)
+        draw_text(self.screen, f'모기 잡은 수: {self.mogi_kill}', 30, pygame.Color('Blue'), 100, 10)
 
-    def draw_text(self, text, size, color, x, y):
-        font = pygame.font.SysFont('malgungothic', size)
-        text_surface = font.render(text, True, color)
-        text_rect = text_surface.get_rect()
-        text_rect.midtop = (x, y)
-        self.screen.blit(text_surface, text_rect)
+
 
     def opning(self):
-        self.draw_text('어느 날... 별 차이 없는 평범한 날.. 흘러나오는 뉴스..', 20, pygame.Color('Blue'), 150, 30)
-        self.draw_text('"최근, 모기의 개체수가 급격하게 늘어났습니다."', 20, pygame.Color('Blue'), 240, 60)
-        self.draw_text('이게 뭔 소식인가.. 나 그냥 친구가 뉴스 보라고 해서 본 건데..', 20, pygame.Color('Blue'), 300, 90)
+        draw_text(self.screen, '어느 날... 별 차이 없는 평범한 날.. 흘러나오는 뉴스..', 20, pygame.Color('Blue'), 150, 30)
+        draw_text(self.screen, '"최근, 모기의 개체수가 급격하게 늘어났습니다."', 20, pygame.Color('Blue'), 240, 60)
+        draw_text(self.screen, '이게 뭔 소식인가.. 나 그냥 친구가 뉴스 보라고 해서 본 건데..', 20, pygame.Color('Blue'), 300, 90)
         pygame.display.flip()
         self.stop = True
         while self.stop:
@@ -143,6 +172,8 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.stop = False
                     self.playing = False
+
+
 
 
 game = Game()
