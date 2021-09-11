@@ -109,6 +109,7 @@ class Game:
         self.stop = True
         self.fullscreen = False
         self.stage = 1
+        self.time = pygame.time.get_ticks()
         pygame.mixer.music.load('용구탄생의 비밀.wav')
 
     def run(self):
@@ -116,6 +117,7 @@ class Game:
         pygame.mixer.music.play(-1)
         pygame.mixer.music.set_volume(1.0)
         while self.playing:
+
             self.clock.tick(FPS)
             self.event()
             self.update()
@@ -153,7 +155,8 @@ class Game:
         self.screen.fill(pygame.Color('White'))
         self.all_sprite.draw(self.screen)
         draw_text(self.screen, f'모기 잡은 수: {self.mogi_kill}', 30, pygame.Color('Blue'), 100, 10)
-
+        self.time = pygame.time.get_ticks()
+        draw_text(self.screen, f'남은 시간: {100 - int(self.time / 1000)}', 20, pygame.Color('Black'), 120, 90)
 
 
     def opning(self):
@@ -172,6 +175,7 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.stop = False
                     self.playing = False
+
 
 
 
