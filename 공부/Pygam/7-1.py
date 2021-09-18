@@ -73,7 +73,7 @@ class Mogi(pygame.sprite.Sprite):
 
 
 class Mogistick(pygame.sprite.Sprite):
-    def __init__(self, root):
+    def __init__(self, root):  #
         self.image = pygame.image.load('mogi_stic.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
